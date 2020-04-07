@@ -90,6 +90,9 @@ class PianoView(
         val action = event.action
         val isDown = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE
 
+        for (k in whiteKeys + blackKeys) {
+            k.isDown = false
+        }
         for (i in 0 until event.pointerCount) {
             val x = event.getX(i)
             val y = event.getY(i)
@@ -97,13 +100,13 @@ class PianoView(
             val key = getDownKey(x, y)
             key?.isDown = isDown
         }
-
         for (k in whiteKeys + blackKeys) {
-            if (k.isDown && !pianoPlayer.isPlaying(k.note)) {
+            if (!k.isDown) continue
+            if (!pianoPlayer.isPlaying(k.note)) {
                 pianoPlayer.play(k.note)
             }
         }
-
+        invalidate()
         return true
     }
 
@@ -116,9 +119,5 @@ class PianoView(
             if (k.rect.contains(x, y)) return k
         }
         return null
-    }
-
-    private fun releaseKey(key: Key) {
-
     }
 }
