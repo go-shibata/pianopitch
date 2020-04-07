@@ -101,9 +101,13 @@ class PianoView(
             key?.isDown = isDown
         }
         for (k in whiteKeys + blackKeys) {
-            if (!k.isDown) continue
-            if (!pianoPlayer.isPlaying(k.note)) {
+            if (!k.isDown) {
+                k.isSustain = false
+                continue
+            }
+            if (!k.isSustain) {
                 pianoPlayer.play(k.note)
+                k.isSustain = true
             }
         }
         invalidate()
