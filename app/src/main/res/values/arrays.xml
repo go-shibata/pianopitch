@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="notes">
+        <item>@raw/c4</item>
+        <item>@raw/db4</item>
+        <item>@raw/d4</item>
+        <item>@raw/eb4</item>
+        <item>@raw/e4</item>
+        <item>@raw/f4</item>
+        <item>@raw/gb4</item>
+        <item>@raw/g4</item>
+        <item>@raw/ab4</item>
+        <item>@raw/a4</item>
+        <item>@raw/bb4</item>
+        <item>@raw/b4</item>
+        <item>@raw/c5</item>
+        <item>@raw/db5</item>
+        <item>@raw/d5</item>
+        <item>@raw/eb5</item>
+        <item>@raw/e5</item>
+        <item>@raw/f5</item>
+        <item>@raw/gb5</item>
+        <item>@raw/g5</item>
+        <item>@raw/ab5</item>
+        <item>@raw/a5</item>
+        <item>@raw/bb5</item>
+        <item>@raw/b5</item>
+    </array>
+</resources>

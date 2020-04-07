@@ -1,11 +1,13 @@
 package com.example.go.pianoroll.ui.piano
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 class PianoView(
@@ -15,6 +17,7 @@ class PianoView(
 
     companion object {
         private const val N_WHITE_KEY = 14
+        private const val START_NOTE_NUMBER = 60
     }
 
     private val blackPaint = Paint().apply {
@@ -35,33 +38,32 @@ class PianoView(
     private val whiteKeys: ArrayList<Key> = arrayListOf()
     private val blackKeys: ArrayList<Key> = arrayListOf()
 
+    private val pianoPlayer = PianoPlayer(context)
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
         keyWidth = w.toFloat() / N_WHITE_KEY
         keyHeight = h.toFloat()
-        var count = 15
+        var noteNumber = START_NOTE_NUMBER
 
         for (i in 0 until N_WHITE_KEY) {
-            val left = i * keyWidth
-            val right = if (i != N_WHITE_KEY) left + keyWidth else w.toFloat()
+            var left = i * keyWidth
+            var right = if (i != N_WHITE_KEY) left + keyWidth else w.toFloat()
             whiteKeys.add(
                 Key(
-                    i,
+                    noteNumber++,
                     RectF(left, 0f, right, keyHeight)
                 )
             )
-        }
-
-        for (i in 0 until N_WHITE_KEY) {
             if (i % 7 in listOf(2, 6)) continue
 
-            val left = (i + 0.75f) * keyWidth
-            val right = left + keyWidth * 0.5f
+            left = (i + 0.75f) * keyWidth
+            right = left + keyWidth * 0.5f
             val height = keyHeight * 0.6f
             blackKeys.add(
                 Key(
-                    count++,
+                    noteNumber++,
                     RectF(left, 0f, right, height)
                 )
             )
@@ -80,5 +82,43 @@ class PianoView(
         for (k in blackKeys) {
             canvas?.drawRect(k.rect, if (k.isDown) yellowPaint else blackPaint)
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        checkNotNull(event)
+        val action = event.action
+        val isDown = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE
+
+        for (i in 0 until event.pointerCount) {
+            val x = event.getX(i)
+            val y = event.getY(i)
+
+            val key = getDownKey(x, y)
+            key?.isDown = isDown
+        }
+
+        for (k in whiteKeys + blackKeys) {
+            if (k.isDown && !pianoPlayer.isPlaying(k.note)) {
+                pianoPlayer.play(k.note)
+            }
+        }
+
+        return true
+    }
+
+    private fun getDownKey(x: Float, y: Float): Key? {
+        // black keys are above of white keys
+        for (k in blackKeys) {
+            if (k.rect.contains(x, y)) return k
+        }
+        for (k in whiteKeys) {
+            if (k.rect.contains(x, y)) return k
+        }
+        return null
+    }
+
+    private fun releaseKey(key: Key) {
+
     }
 }
