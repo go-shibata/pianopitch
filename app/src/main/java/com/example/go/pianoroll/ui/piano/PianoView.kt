@@ -124,4 +124,9 @@ class PianoView(
         }
         return null
     }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        pianoPlayer.onDestroy()
+    }
 }
