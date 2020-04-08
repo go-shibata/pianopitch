@@ -18,6 +18,9 @@ class PianoView(
     companion object {
         private const val N_WHITE_KEY = 14
         private const val START_NOTE_NUMBER = 60
+
+        private const val BLACK_WIDTH = 0.7f
+        private const val BLACK_HEIGHT = 0.6f
     }
 
     private val blackPaint = Paint().apply {
@@ -58,9 +61,9 @@ class PianoView(
             )
             if (i % 7 in listOf(2, 6)) continue
 
-            left = (i + 0.75f) * keyWidth
-            right = left + keyWidth * 0.5f
-            val height = keyHeight * 0.6f
+            left = (i + (1 - BLACK_WIDTH / 2)) * keyWidth
+            right = left + keyWidth * BLACK_WIDTH
+            val height = keyHeight * BLACK_HEIGHT
             blackKeys.add(
                 Key(
                     noteNumber++,
