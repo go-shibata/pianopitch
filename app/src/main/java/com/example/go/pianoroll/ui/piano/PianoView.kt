@@ -87,8 +87,24 @@ class PianoView(
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         checkNotNull(event)
-        val action = event.action
-        val isDown = action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE
+        val action = event.actionMasked
+        val isDown = action in listOf(
+            MotionEvent.ACTION_DOWN,
+            MotionEvent.ACTION_MOVE,
+            MotionEvent.ACTION_POINTER_DOWN
+        )
+
+        if (action == MotionEvent.ACTION_POINTER_UP) {
+            val pointerIndex = event.actionIndex
+            val x = event.getX(pointerIndex)
+            val y = event.getY(pointerIndex)
+
+            val key = getDownKey(x, y)
+            key?.isDown = false
+            key?.isSustain = false
+            invalidate()
+            return true
+        }
 
         for (k in whiteKeys + blackKeys) {
             k.isDown = false
