@@ -15,15 +15,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/note"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.playedNoteName}"
+        <LinearLayout
+            android:id="@+id/q_notes"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pitch_notes_size"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/a_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <LinearLayout
+            android:id="@+id/a_notes"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pitch_notes_size"
+            android:layout_marginTop="@dimen/pitch_notes_lists_margin"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@id/piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/q_notes" />
 
         <com.example.go.piano_pitch.ui.view.piano.PianoView
             android:id="@+id/piano"
