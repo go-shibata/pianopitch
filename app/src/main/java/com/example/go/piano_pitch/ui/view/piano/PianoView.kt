@@ -41,8 +41,9 @@ class PianoView(
     private val whiteKeys: ArrayList<Key> = arrayListOf()
     private val blackKeys: ArrayList<Key> = arrayListOf()
 
-    private val pianoPlayer =
-        PianoPlayer(context)
+    private val pianoPlayer = PianoPlayer(context)
+
+    private var onPlayListener: OnPlayListener? = null
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -129,6 +130,7 @@ class PianoView(
             if (!k.isSustain) {
                 pianoPlayer.play(k.note)
                 k.isSustain = true
+                onPlayListener?.onPlay(k.note)
             }
         }
         invalidate()
@@ -149,5 +151,13 @@ class PianoView(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         pianoPlayer.onDestroy()
+    }
+
+    fun setOnPlayListener(listener: OnPlayListener) {
+        onPlayListener = listener
+    }
+
+    interface OnPlayListener {
+        fun onPlay(note: Int)
     }
 }
