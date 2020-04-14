@@ -1,10 +1,10 @@
-package com.example.go.pianoroll.ui.piano
+package com.example.go.piano_pitch.ui.piano
 
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
 import androidx.core.content.res.getResourceIdOrThrow
-import com.example.go.pianoroll.R
+import com.example.go.piano_pitch.R
 
 class PianoPlayer(
     context: Context

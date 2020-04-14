@@ -1,4 +1,4 @@
-package com.example.go.pianoroll
+package com.example.go.piano_pitch
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

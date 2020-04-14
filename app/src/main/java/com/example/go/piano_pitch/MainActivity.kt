@@ -1,8 +1,8 @@
-package com.example.go.pianoroll
+package com.example.go.piano_pitch
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.go.pianoroll.ui.piano.PianoFragment
+import com.example.go.piano_pitch.ui.piano.PianoFragment
 
 class MainActivity : AppCompatActivity() {
 

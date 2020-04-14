@@ -1,4 +1,4 @@
-package com.example.go.pianoroll.ui.piano
+package com.example.go.piano_pitch.ui.piano
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.example.go.pianoroll.R
+import com.example.go.piano_pitch.R
 
 class PianoFragment : Fragment() {
 

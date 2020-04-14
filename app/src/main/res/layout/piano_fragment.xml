@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.piano.PianoFragment">
 
-    <com.example.go.pianoroll.ui.piano.PianoView
+    <com.example.go.piano_pitch.ui.piano.PianoView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
