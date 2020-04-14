@@ -1,4 +1,4 @@
-package com.example.go.piano_pitch.ui.piano
+package com.example.go.piano_pitch.ui.view.piano
 
 import android.content.Context
 import android.media.AudioAttributes

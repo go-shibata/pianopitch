@@ -1,4 +1,4 @@
-package com.example.go.piano_pitch.ui.piano
+package com.example.go.piano_pitch.ui.view.piano
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -41,14 +41,16 @@ class PianoView(
     private val whiteKeys: ArrayList<Key> = arrayListOf()
     private val blackKeys: ArrayList<Key> = arrayListOf()
 
-    private val pianoPlayer = PianoPlayer(context)
+    private val pianoPlayer =
+        PianoPlayer(context)
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
         keyWidth = w.toFloat() / N_WHITE_KEY
         keyHeight = h.toFloat()
-        var noteNumber = START_NOTE_NUMBER
+        var noteNumber =
+            START_NOTE_NUMBER
 
         for (i in 0 until N_WHITE_KEY) {
             var left = i * keyWidth
