@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">PianoPitch</string>
 
+    <string name="menu_btn_pitch_text">問題に取り組む</string>
     <string name="menu_btn_piano_text">自由にピアノ</string>
 </resources>

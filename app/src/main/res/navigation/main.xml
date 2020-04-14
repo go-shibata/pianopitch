@@ -13,10 +13,18 @@
         <action
             android:id="@+id/action_menuFragment_to_pianoFragment"
             app:destination="@id/pianoFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_pitchFragment"
+            app:destination="@id/pitchFragment" />
     </fragment>
     <fragment
         android:id="@+id/pianoFragment"
         android:name="com.example.go.piano_pitch.ui.piano.PianoFragment"
         android:label="piano_fragment"
         tools:layout="@layout/fragment_piano" />
+    <fragment
+        android:id="@+id/pitchFragment"
+        android:name="com.example.go.piano_pitch.ui.pitch.PitchFragment"
+        android:label="fragment_pitch"
+        tools:layout="@layout/fragment_pitch" />
 </navigation>

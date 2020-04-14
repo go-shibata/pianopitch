@@ -20,6 +20,12 @@ class MenuFragment : Fragment() {
         return binding.root
     }
 
+    fun onClickPitchButton() {
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToPitchFragment()
+        )
+    }
+
     fun onClickPianoButton() {
         findNavController().navigate(
             MenuFragmentDirections.actionMenuFragmentToPianoFragment()
