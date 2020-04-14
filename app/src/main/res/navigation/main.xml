@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.go.piano_pitch.ui.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu">
+        <action
+            android:id="@+id/action_menuFragment_to_pianoFragment"
+            app:destination="@id/pianoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pianoFragment"
+        android:name="com.example.go.piano_pitch.ui.piano.PianoFragment"
+        android:label="piano_fragment"
+        tools:layout="@layout/fragment_piano" />
+</navigation>
