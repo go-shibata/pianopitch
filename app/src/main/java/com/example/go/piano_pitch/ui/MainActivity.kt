@@ -1,7 +1,8 @@
-package com.example.go.piano_pitch
+package com.example.go.piano_pitch.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.go.piano_pitch.R
 import com.example.go.piano_pitch.ui.piano.PianoFragment
 
 class MainActivity : AppCompatActivity() {
