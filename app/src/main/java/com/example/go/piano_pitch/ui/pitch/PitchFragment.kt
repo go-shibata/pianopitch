@@ -44,6 +44,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         return binding.root
     }
 
+    @ExperimentalStdlibApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -63,6 +64,26 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             }
             binding.aNotes.addView(textView)
         })
+        viewModel.question.observe(viewLifecycleOwner, Observer {
+            val layoutParams = LinearLayout.LayoutParams(
+                resources.getDimensionPixelSize(R.dimen.pitch_notes_size),
+                resources.getDimensionPixelSize(R.dimen.pitch_notes_size)
+            )
+            it.forEach { noteName ->
+                val textView = TextView(requireContext()).apply {
+                    setLayoutParams(layoutParams)
+                    gravity = Gravity.CENTER
+                    text = noteName
+                    setTextSize(
+                        TypedValue.COMPLEX_UNIT_PX,
+                        resources.getDimension(R.dimen.pitch_notes_text_size)
+                    )
+                }
+                binding.qNotes.addView(textView)
+            }
+        })
+
+        viewModel.fetchQuestion()
     }
 
     override fun onPlay(note: Int) {

@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.go.piano_pitch.ui.pitch.PitchViewModel" />
@@ -38,6 +40,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/q_notes" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_correct"
+            android:visibility="@{viewModel.resultIsCorrect ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/piano"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_incorrect"
+            android:visibility="@{viewModel.resultIsCorrect.equals(false) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/piano"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.example.go.piano_pitch.ui.view.piano.PianoView
             android:id="@+id/piano"
