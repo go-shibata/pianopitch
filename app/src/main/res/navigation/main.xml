@@ -26,5 +26,19 @@
         android:id="@+id/pitchFragment"
         android:name="com.example.go.piano_pitch.ui.pitch.PitchFragment"
         android:label="fragment_pitch"
-        tools:layout="@layout/fragment_pitch" />
+        tools:layout="@layout/fragment_pitch" >
+        <action
+            android:id="@+id/action_pitchFragment_to_pitchResultFragment"
+            app:destination="@id/pitchResultFragment"
+            app:popUpTo="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pitchResultFragment"
+        android:name="com.example.go.piano_pitch.ui.pitch.PitchResultFragment"
+        android:label="fragment_pitch_result"
+        tools:layout="@layout/fragment_pitch_result" >
+        <argument
+            android:name="results"
+            app:argType="com.example.go.piano_pitch.data.Result[]" />
+    </fragment>
 </navigation>

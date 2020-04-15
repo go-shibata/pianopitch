@@ -81,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_mid"
             android:enabled="@{!viewModel.isStarted() || viewModel.resultIsCorrect != null}"
-            android:onClick="@{() -> viewModel.isStarted() == null || !viewModel.isStarted() ? fragment.onClickStartButton() : fragment.onClickRestartButton()}"
-            android:text="@{viewModel.resultIsCorrect == null ? @string/pitch_btn_start_text : @string/pitch_btn_restart_text}"
+            android:onClick="@{() -> fragment.onClickButton()}"
+            android:text="@{viewModel.resultIsCorrect == null ? @string/pitch_btn_start_text : viewModel.isFinish() ? @string/pitch_btn_finish_text : @string/pitch_btn_restart_text}"
             app:layout_constraintBottom_toTopOf="@id/piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/question_counter" />

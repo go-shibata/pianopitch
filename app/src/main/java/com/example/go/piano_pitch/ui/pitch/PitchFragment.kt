@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.R
 import com.example.go.piano_pitch.databinding.FragmentPitchBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
@@ -100,16 +101,25 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
     }
 
     @ExperimentalStdlibApi
-    fun onClickStartButton() {
-        viewModel.fetchQuestion()
-    }
-
-    @ExperimentalStdlibApi
-    fun onClickRestartButton() {
-        binding.run {
-            aNotes.removeAllViews()
-            qNotes.removeAllViews()
+    fun onClickButton() {
+        when {
+            viewModel.isStarted.value == false -> {
+                viewModel.fetchQuestion()
+            }
+            viewModel.isFinish.value == true -> {
+                findNavController().navigate(
+                    PitchFragmentDirections.actionPitchFragmentToPitchResultFragment(
+                        viewModel.results.toTypedArray()
+                    )
+                )
+            }
+            else -> {
+                binding.run {
+                    aNotes.removeAllViews()
+                    qNotes.removeAllViews()
+                }
+                viewModel.fetchQuestion()
+            }
         }
-        viewModel.fetchQuestion()
     }
 }

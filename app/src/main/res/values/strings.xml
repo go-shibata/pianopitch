@@ -7,4 +7,5 @@
     <string name="pitch_question_counter_text">%d / 10</string>
     <string name="pitch_btn_start_text">開始</string>
     <string name="pitch_btn_restart_text">もう一度</string>
+    <string name="pitch_btn_finish_text">結果確認</string>
 </resources>
