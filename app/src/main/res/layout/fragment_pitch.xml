@@ -23,6 +23,7 @@
             android:layout_height="@dimen/pitch_notes_size"
             android:gravity="center"
             android:orientation="horizontal"
+            android:visibility="@{viewModel.resultIsCorrect != null ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/a_notes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
