@@ -12,7 +12,7 @@ class PitchViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private var playedNotes = arrayListOf<String>()
+    private val playedNotes = arrayListOf<String>()
 
     private val _playedNoteName = MutableLiveData<String>()
     val playedNoteName: LiveData<String> = _playedNoteName
@@ -45,7 +45,10 @@ class PitchViewModel @Inject constructor(
 
     @ExperimentalStdlibApi
     fun fetchQuestion() {
+        playedNotes.clear()
+        _question.postValue(null)
         _isStarted.postValue(true)
+        _resultIsCorrect.postValue(null)
         val question = CToOther.sample()
         val noteNames = getApplication<Application>().resources.getStringArray(R.array.note_names)
         _question.postValue(question.map { noteNames[it] })

@@ -104,7 +104,12 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         viewModel.fetchQuestion()
     }
 
+    @ExperimentalStdlibApi
     fun onClickRestartButton() {
-        TODO()
+        binding.run {
+            aNotes.removeAllViews()
+            qNotes.removeAllViews()
+        }
+        viewModel.fetchQuestion()
     }
 }
