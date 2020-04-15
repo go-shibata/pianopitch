@@ -71,9 +71,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_mid"
+            android:background="@drawable/button_primary_background"
             android:enabled="@{!viewModel.isStarted() || viewModel.resultIsCorrect != null}"
             android:onClick="@{() -> fragment.onClickButton()}"
+            android:padding="@dimen/margin_small"
             android:text="@{viewModel.resultIsCorrect == null ? @string/pitch_btn_start_text : viewModel.isFinish() ? @string/pitch_btn_finish_text : @string/pitch_btn_restart_text}"
+            android:textColor="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/question_counter" />
