@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="questionNumber"
+            type="int" />
+
+        <!-- the name `result` is used in BindingImpl with Epoxy -->
+        <variable
+            name="res"
+            type="com.example.go.piano_pitch.data.Result" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_mid">
+
+        <TextView
+            android:id="@+id/question_number"
+            android:layout_width="@dimen/item_result_question_number_text_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{Integer.toString(questionNumber)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/item_result_icon_size"
+            android:layout_height="@dimen/item_result_icon_size"
+            android:layout_marginStart="@dimen/margin_mid"
+            android:src="@{res.correct ? @drawable/ic_correct : @drawable/ic_incorrect}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/question_number"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/question_notes"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_result_notes_size"
+            android:layout_marginStart="@dimen/margin_mid"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/played_notes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/played_notes"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/item_result_notes_size"
+            android:layout_marginTop="@dimen/margin_mid"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/question_notes"
+            app:layout_constraintTop_toBottomOf="@id/question_notes" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

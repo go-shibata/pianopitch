@@ -6,4 +6,8 @@
     <dimen name="pitch_notes_text_size">28sp</dimen>
     <dimen name="pitch_notes_lists_margin">16dp</dimen>
     <dimen name="pitch_notes_margin">16dp</dimen>
+
+    <dimen name="item_result_question_number_text_width">32dp</dimen>
+    <dimen name="item_result_icon_size">40dp</dimen>
+    <dimen name="item_result_notes_size">@dimen/pitch_notes_size</dimen>
 </resources>
