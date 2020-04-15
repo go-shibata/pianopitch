@@ -12,6 +12,9 @@ class PitchViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+    private val _questionCount = MutableLiveData(0)
+    val questionCount: LiveData<Int> = _questionCount
+
     private val playedNotes = arrayListOf<String>()
 
     private val _playedNoteName = MutableLiveData<String>()
@@ -45,6 +48,7 @@ class PitchViewModel @Inject constructor(
 
     @ExperimentalStdlibApi
     fun fetchQuestion() {
+        _questionCount.postValue(questionCount.value?.plus(1))
         playedNotes.clear()
         _question.postValue(null)
         _isStarted.postValue(true)
