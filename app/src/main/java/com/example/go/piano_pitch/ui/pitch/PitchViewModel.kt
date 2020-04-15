@@ -8,6 +8,7 @@ import com.example.go.piano_pitch.R
 import com.example.go.piano_pitch.data.Result
 import com.example.go.piano_pitch.logic.usecase.CToOther
 import javax.inject.Inject
+import kotlin.random.Random
 
 class PitchViewModel @Inject constructor(
     application: Application
@@ -51,7 +52,14 @@ class PitchViewModel @Inject constructor(
         val isCorrect = playedNotes.zip(questionNotes)
             .all { pair -> pair.first == pair.second }
         _resultIsCorrect.postValue(isCorrect)
-        results.add(Result(isCorrect, playedNotes.toList(), questionNotes))
+        results.add(
+            Result(
+                Random.nextLong(),
+                isCorrect,
+                playedNotes.toList(),
+                questionNotes
+            )
+        )
 
         if (questionCount.value == 10) {
             _isFinish.postValue(true)

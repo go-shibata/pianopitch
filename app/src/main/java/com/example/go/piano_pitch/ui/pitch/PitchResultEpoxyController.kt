@@ -25,7 +25,7 @@ class PitchResultEpoxyController @Inject constructor(
     override fun buildModels() {
         data.forEachIndexed { index, it ->
             itemResult {
-                id(it.hashCode())
+                id(it.id)
                 questionNumber(index + 1)
                 res(it)
                 listener(onClickPlayButtonListener)
