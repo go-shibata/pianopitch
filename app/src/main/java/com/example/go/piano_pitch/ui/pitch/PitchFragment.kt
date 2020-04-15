@@ -41,6 +41,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPitchBinding.inflate(inflater, container, false).apply {
+            fragment = this@PitchFragment
             viewModel = this@PitchFragment.viewModel
             lifecycleOwner = viewLifecycleOwner
             piano.setOnPlayListener(this@PitchFragment)
@@ -48,7 +49,6 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         return binding.root
     }
 
-    @ExperimentalStdlibApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -87,18 +87,24 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             }
 
             CoroutineScope(Dispatchers.Default).launch {
-                // TODO: fetch をボタン式にして読み込みの時間を作る
                 it.forEach { note ->
                     delay(1000)
                     binding.piano.play(note)
                 }
             }
         })
-
-        viewModel.fetchQuestion()
     }
 
     override fun onPlay(note: Int) {
         viewModel.setPlayedNote(note)
+    }
+
+    @ExperimentalStdlibApi
+    fun onClickStartButton() {
+        viewModel.fetchQuestion()
+    }
+
+    fun onClickRestartButton() {
+        TODO()
     }
 }

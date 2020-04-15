@@ -9,6 +9,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="fragment"
+            type="com.example.go.piano_pitch.ui.pitch.PitchFragment" />
+
+        <variable
             name="viewModel"
             type="com.example.go.piano_pitch.ui.pitch.PitchViewModel" />
     </data>
@@ -60,6 +64,18 @@
             app:layout_constraintBottom_toTopOf="@id/piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_mid"
+            android:enabled="@{!viewModel.isStarted() || viewModel.resultIsCorrect != null}"
+            android:onClick="@{() -> viewModel.isStarted() == null || !viewModel.isStarted() ? fragment.onClickStartButton() : fragment.onClickRestartButton()}"
+            android:text="@{viewModel.resultIsCorrect == null ? @string/pitch_btn_start_text : @string/pitch_btn_restart_text}"
+            app:layout_constraintBottom_toTopOf="@id/piano"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.example.go.piano_pitch.ui.view.piano.PianoView

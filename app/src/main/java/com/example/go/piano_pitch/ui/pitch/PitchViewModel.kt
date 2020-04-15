@@ -20,6 +20,9 @@ class PitchViewModel @Inject constructor(
     private val _question = MutableLiveData<List<String>>()
     val question: LiveData<List<String>> = _question
 
+    private val _isStarted = MutableLiveData<Boolean>()
+    val isStarted: LiveData<Boolean> = _isStarted
+
     private val _resultIsCorrect = MutableLiveData<Boolean>()
     val resultIsCorrect: LiveData<Boolean> = _resultIsCorrect
 
@@ -42,6 +45,7 @@ class PitchViewModel @Inject constructor(
 
     @ExperimentalStdlibApi
     fun fetchQuestion() {
+        _isStarted.postValue(true)
         val question = CToOther.sample()
         val noteNames = getApplication<Application>().resources.getStringArray(R.array.note_names)
         _question.postValue(question.map { noteNames[it] })

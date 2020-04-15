@@ -3,4 +3,7 @@
 
     <string name="menu_btn_pitch_text">問題に取り組む</string>
     <string name="menu_btn_piano_text">自由にピアノ</string>
+
+    <string name="pitch_btn_start_text">開始</string>
+    <string name="pitch_btn_restart_text">もう一度</string>
 </resources>
