@@ -2,8 +2,8 @@
 <resources>
     <dimen name="margin_mid">16dp</dimen>
 
-    <dimen name="pitch_notes_size">40dp</dimen>
-    <dimen name="pitch_notes_text_size">28sp</dimen>
+    <dimen name="pitch_notes_size">52dp</dimen>
+    <dimen name="pitch_notes_text_size">36sp</dimen>
     <dimen name="pitch_notes_lists_margin">16dp</dimen>
     <dimen name="pitch_notes_margin">16dp</dimen>
     <dimen name="pitch_icon_size">60dp</dimen>
