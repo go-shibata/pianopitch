@@ -17,6 +17,10 @@ import com.example.go.piano_pitch.databinding.FragmentPitchBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
 import com.example.go.piano_pitch.ui.view.piano.PianoView
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PitchFragment : Fragment(), PianoView.OnPlayListener {
@@ -80,6 +84,14 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
                     )
                 }
                 binding.qNotes.addView(textView)
+            }
+
+            CoroutineScope(Dispatchers.Default).launch {
+                // TODO: fetch をボタン式にして読み込みの時間を作る
+                it.forEach { note ->
+                    delay(1000)
+                    binding.piano.play(note)
+                }
             }
         })
 
