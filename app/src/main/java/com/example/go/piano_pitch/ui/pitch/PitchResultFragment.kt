@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.go.piano_pitch.data.Result
 import com.example.go.piano_pitch.databinding.FragmentPitchResultBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class PitchResultFragment : Fragment() {
+class PitchResultFragment : Fragment(), PitchResultEpoxyController.OnClickPlayButtonListener {
 
     @Inject
     lateinit var factory: ViewModelFactory<PitchResultViewModel>
@@ -43,5 +44,9 @@ class PitchResultFragment : Fragment() {
             results.setController(epoxyController)
         }
         return binding.root
+    }
+
+    override fun onClickPlayButton(result: Result) {
+        viewModel.play(result)
     }
 }

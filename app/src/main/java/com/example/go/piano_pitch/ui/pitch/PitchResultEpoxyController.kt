@@ -11,7 +11,9 @@ import com.example.go.piano_pitch.itemResult
 import kotlinx.android.synthetic.main.item_result.view.*
 import javax.inject.Inject
 
-class PitchResultEpoxyController @Inject constructor() : EpoxyController() {
+class PitchResultEpoxyController @Inject constructor(
+    private val onClickPlayButtonListener: OnClickPlayButtonListener
+) : EpoxyController() {
 
     private var data: List<Result> = emptyList()
 
@@ -26,6 +28,7 @@ class PitchResultEpoxyController @Inject constructor() : EpoxyController() {
                 id(it.hashCode())
                 questionNumber(index + 1)
                 res(it)
+                listener(onClickPlayButtonListener)
 
                 onBind { _, view, _ ->
                     val root = view.dataBinding.root
@@ -62,5 +65,9 @@ class PitchResultEpoxyController @Inject constructor() : EpoxyController() {
                 }
             }
         }
+    }
+
+    interface OnClickPlayButtonListener {
+        fun onClickPlayButton(result: Result)
     }
 }
