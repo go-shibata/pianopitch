@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.go.piano_pitch.ui.menu.MenuFragment"
-        android:label="fragment_menu"
+        android:label="@string/menu_title"
         tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_pianoFragment"
@@ -20,13 +20,13 @@
     <fragment
         android:id="@+id/pianoFragment"
         android:name="com.example.go.piano_pitch.ui.piano.PianoFragment"
-        android:label="piano_fragment"
+        android:label="@string/piano_title"
         tools:layout="@layout/fragment_piano" />
     <fragment
         android:id="@+id/pitchFragment"
         android:name="com.example.go.piano_pitch.ui.pitch.PitchFragment"
-        android:label="fragment_pitch"
-        tools:layout="@layout/fragment_pitch" >
+        android:label="@string/pitch_title"
+        tools:layout="@layout/fragment_pitch">
         <action
             android:id="@+id/action_pitchFragment_to_pitchResultFragment"
             app:destination="@id/pitchResultFragment"
@@ -35,8 +35,8 @@
     <fragment
         android:id="@+id/pitchResultFragment"
         android:name="com.example.go.piano_pitch.ui.pitch.PitchResultFragment"
-        android:label="fragment_pitch_result"
-        tools:layout="@layout/fragment_pitch_result" >
+        android:label="@string/pitch_result_title"
+        tools:layout="@layout/fragment_pitch_result">
         <argument
             android:name="results"
             app:argType="com.example.go.piano_pitch.data.Result[]" />
