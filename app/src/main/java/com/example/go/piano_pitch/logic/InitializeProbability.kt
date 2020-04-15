@@ -19,13 +19,13 @@ class InitializeProbability(
             throw IllegalArgumentException("The sum of vector must be 1, but given $sum")
         }
 
-        mCumSumVector = mVector.scan(.0) { acc, value -> acc + value }.dropLast(1)
+        mCumSumVector = mVector.scan(.0) { acc, value -> acc + value }.drop(1)
     }
 
     fun sample(): Int {
         val rand = Math.random()
         mCumSumVector.forEachIndexed { index, cumSum ->
-            if (cumSum <= rand) return index
+            if (rand < cumSum) return index
         }
         throw RuntimeException("Couldn't sample")
     }
