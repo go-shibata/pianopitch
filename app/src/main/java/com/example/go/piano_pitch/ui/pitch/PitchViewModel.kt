@@ -37,6 +37,8 @@ class PitchViewModel @Inject constructor(
     val isFinish: LiveData<Boolean> = _isFinish
 
     fun setPlayedNote(note: Int) {
+        if (isStarted.value != true || resultIsCorrect.value != null) return
+
         val noteName = getApplication<Application>().resources
             .getStringArray(R.array.note_names)[note % 12]
         _playedNoteName.postValue(noteName)
