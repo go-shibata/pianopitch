@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text"
+    android:layout_width="@dimen/pitch_notes_size"
+    android:layout_height="@dimen/pitch_notes_size"
+    android:gravity="center"
+    android:textSize="@dimen/pitch_notes_text_size" />
