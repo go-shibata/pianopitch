@@ -25,9 +25,6 @@ class PitchViewModel @Inject constructor(
     private val bufferPlayedNotes = arrayListOf<Note>()
     private val playedNotes = arrayListOf<List<Note>>()
 
-    private val _bufferPlayedNote = MutableLiveData<Note>()
-    val bufferPlayedNote: LiveData<Note> = _bufferPlayedNote
-
     private val _playedNote = MutableLiveData<List<Note>>()
     val playedNote: LiveData<List<Note>> = _playedNote
 
@@ -48,7 +45,6 @@ class PitchViewModel @Inject constructor(
         if (isStarted.value != true || resultIsCorrect.value != null) return
 
         val data = Note(note)
-        _bufferPlayedNote.postValue(data)
 
         bufferPlayedNotes.add(data)
         if (bufferPlayedNotes.size == pitchType.numberOfComponent) {

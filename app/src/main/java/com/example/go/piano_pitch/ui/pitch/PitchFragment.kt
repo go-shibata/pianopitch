@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.databinding.FragmentPitchBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
-import com.example.go.piano_pitch.ui.view.note.NoteTextView
 import com.example.go.piano_pitch.ui.view.note.NotesListView
 import com.example.go.piano_pitch.ui.view.piano.PianoView
 import dagger.android.support.AndroidSupportInjection
@@ -57,19 +55,12 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         return binding.root
     }
 
-    @ExperimentalStdlibApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.bufferPlayedNote.observe(viewLifecycleOwner, Observer {
-            val textView = NoteTextView(requireContext(), it.name)
-            binding.aNotes.addView(textView)
-        })
         viewModel.playedNote.observe(viewLifecycleOwner, Observer {
             val listView = NotesListView(requireContext(), it)
-            val numberOfComponent = viewModel.pitchType.numberOfComponent
             binding.aNotes.apply {
-                removeViews(size - numberOfComponent, numberOfComponent)
                 addView(listView)
             }
         })
