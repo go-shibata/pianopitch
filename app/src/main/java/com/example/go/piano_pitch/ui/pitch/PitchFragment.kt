@@ -81,8 +81,8 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
 
             CoroutineScope(Dispatchers.Default).launch {
                 it.forEach { list ->
+                    delay(1000)
                     list.forEach { note ->
-                        delay(1000)
                         binding.piano.play(note.note)
                     }
                 }
