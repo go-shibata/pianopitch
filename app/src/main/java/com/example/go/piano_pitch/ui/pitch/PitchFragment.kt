@@ -62,7 +62,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.playedNoteName.observe(viewLifecycleOwner, Observer {
+        viewModel.playedNote.observe(viewLifecycleOwner, Observer {
             val layoutParams = LinearLayout.LayoutParams(
                 resources.getDimensionPixelSize(R.dimen.pitch_notes_size),
                 resources.getDimensionPixelSize(R.dimen.pitch_notes_size)
@@ -70,7 +70,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             val textView = TextView(requireContext()).apply {
                 setLayoutParams(layoutParams)
                 gravity = Gravity.CENTER
-                text = it
+                text = it.name
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_PX,
                     resources.getDimension(R.dimen.pitch_notes_text_size)
@@ -83,11 +83,11 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
                 resources.getDimensionPixelSize(R.dimen.pitch_notes_size),
                 resources.getDimensionPixelSize(R.dimen.pitch_notes_size)
             )
-            it.forEach { noteName ->
+            it.forEach { note ->
                 val textView = TextView(requireContext()).apply {
                     setLayoutParams(layoutParams)
                     gravity = Gravity.CENTER
-                    text = noteName
+                    text = note.name
                     setTextSize(
                         TypedValue.COMPLEX_UNIT_PX,
                         resources.getDimension(R.dimen.pitch_notes_text_size)
@@ -99,7 +99,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             CoroutineScope(Dispatchers.Default).launch {
                 it.forEach { note ->
                     delay(1000)
-                    binding.piano.play(note)
+                    binding.piano.play(note.note)
                 }
             }
         })

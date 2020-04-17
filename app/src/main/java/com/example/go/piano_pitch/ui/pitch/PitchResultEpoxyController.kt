@@ -41,7 +41,7 @@ class PitchResultEpoxyController @Inject constructor(
                         val textView = TextView(root.context).apply {
                             setLayoutParams(layoutParams)
                             gravity = Gravity.CENTER
-                            text = it
+                            text = it.name
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_PX,
                                 resources.getDimension(R.dimen.pitch_notes_text_size)
@@ -54,7 +54,7 @@ class PitchResultEpoxyController @Inject constructor(
                         val textView = TextView(root.context).apply {
                             setLayoutParams(layoutParams)
                             gravity = Gravity.CENTER
-                            text = it
+                            text = it.name
                             setTextSize(
                                 TypedValue.COMPLEX_UNIT_PX,
                                 resources.getDimension(R.dimen.pitch_notes_text_size)

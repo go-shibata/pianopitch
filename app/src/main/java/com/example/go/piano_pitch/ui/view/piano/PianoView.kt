@@ -9,7 +9,6 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.example.go.piano_pitch.R
 
 class PianoView(
     context: Context,
@@ -160,12 +159,6 @@ class PianoView(
 
     fun play(note: Int) {
         pianoPlayer.play(note)
-    }
-
-    fun play(note: String) {
-        // TODO: これを使わなくていいようにする
-        val index = context.resources.getStringArray(R.array.note_names).indexOf(note)
-        pianoPlayer.play(60 + index)
     }
 
     interface OnPlayListener {

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.go.piano_pitch.R
+import com.example.go.piano_pitch.data.Note
 import com.example.go.piano_pitch.data.Result
 import com.example.go.piano_pitch.logic.PitchType
 import javax.inject.Inject
@@ -22,13 +22,13 @@ class PitchViewModel @Inject constructor(
     private val _questionCount = MutableLiveData(0)
     val questionCount: LiveData<Int> = _questionCount
 
-    private val playedNotes = arrayListOf<String>()
+    private val playedNotes = arrayListOf<Note>()
 
-    private val _playedNoteName = MutableLiveData<String>()
-    val playedNoteName: LiveData<String> = _playedNoteName
+    private val _playedNote = MutableLiveData<Note>()
+    val playedNote: LiveData<Note> = _playedNote
 
-    private val _question = MutableLiveData<List<String>>()
-    val question: LiveData<List<String>> = _question
+    private val _question = MutableLiveData<List<Note>>()
+    val question: LiveData<List<Note>> = _question
 
     private val _isStarted = MutableLiveData<Boolean>()
     val isStarted: LiveData<Boolean> = _isStarted
@@ -47,11 +47,10 @@ class PitchViewModel @Inject constructor(
     fun setPlayedNote(note: Int) {
         if (isStarted.value != true || resultIsCorrect.value != null) return
 
-        val noteName = getApplication<Application>().resources
-            .getStringArray(R.array.note_names)[note % 12]
-        _playedNoteName.postValue(noteName)
+        val data = Note(note)
+        _playedNote.postValue(data)
 
-        playedNotes.add(noteName)
+        playedNotes.add(data)
         if (playedNotes.size == question.value?.size) {
             checkAnswer()
         }
@@ -84,7 +83,6 @@ class PitchViewModel @Inject constructor(
         _isStarted.postValue(true)
         _resultIsCorrect.postValue(null)
         val question = pitchType.sample()
-        val noteNames = getApplication<Application>().resources.getStringArray(R.array.note_names)
-        _question.postValue(question.map { noteNames[it] })
+        _question.postValue(question.map { Note.fromIndex(it) })
     }
 }
