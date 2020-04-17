@@ -31,6 +31,9 @@
             android:id="@+id/action_pitchFragment_to_pitchResultFragment"
             app:destination="@id/pitchResultFragment"
             app:popUpTo="@id/menuFragment" />
+        <argument
+            android:name="pitchType"
+            app:argType="com.example.go.piano_pitch.logic.PitchType" />
     </fragment>
     <fragment
         android:id="@+id/pitchResultFragment"

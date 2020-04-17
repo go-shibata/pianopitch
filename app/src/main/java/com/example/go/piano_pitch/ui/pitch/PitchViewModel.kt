@@ -6,13 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.go.piano_pitch.R
 import com.example.go.piano_pitch.data.Result
-import com.example.go.piano_pitch.logic.usecase.CToOther
+import com.example.go.piano_pitch.logic.PitchType
 import javax.inject.Inject
 import kotlin.random.Random
 
 class PitchViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
+
+    @ExperimentalStdlibApi
+    private lateinit var pitchType: PitchType
 
     val results = arrayListOf<Result>()
 
@@ -35,6 +38,11 @@ class PitchViewModel @Inject constructor(
 
     private val _isFinish = MutableLiveData<Boolean>()
     val isFinish: LiveData<Boolean> = _isFinish
+
+    @ExperimentalStdlibApi
+    fun setPitchType(pitchType: PitchType) {
+        this.pitchType = pitchType
+    }
 
     fun setPlayedNote(note: Int) {
         if (isStarted.value != true || resultIsCorrect.value != null) return
@@ -75,7 +83,7 @@ class PitchViewModel @Inject constructor(
         _question.postValue(null)
         _isStarted.postValue(true)
         _resultIsCorrect.postValue(null)
-        val question = CToOther.sample()
+        val question = pitchType.sample()
         val noteNames = getApplication<Application>().resources.getStringArray(R.array.note_names)
         _question.postValue(question.map { noteNames[it] })
     }

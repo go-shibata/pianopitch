@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.databinding.FragmentMenuBinding
+import com.example.go.piano_pitch.logic.PitchType
 import dagger.android.support.AndroidSupportInjection
 
 class MenuFragment : Fragment() {
@@ -27,9 +28,10 @@ class MenuFragment : Fragment() {
         return binding.root
     }
 
+    @ExperimentalStdlibApi
     fun onClickPitchButton() {
         findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToPitchFragment()
+            MenuFragmentDirections.actionMenuFragmentToPitchFragment(PitchType.C_TO_OTHER)
         )
     }
 

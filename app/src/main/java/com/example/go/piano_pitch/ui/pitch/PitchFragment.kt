@@ -37,6 +37,15 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         super.onAttach(context)
     }
 
+    @ExperimentalStdlibApi
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        checkNotNull(arguments).let {
+            val pitchType = PitchFragmentArgs.fromBundle(it).pitchType
+            viewModel.setPitchType(pitchType)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
