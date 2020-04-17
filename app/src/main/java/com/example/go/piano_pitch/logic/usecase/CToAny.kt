@@ -5,7 +5,7 @@ import com.example.go.piano_pitch.logic.MarkovChain
 import com.example.go.piano_pitch.logic.TransitionProbability
 
 @ExperimentalStdlibApi
-object CToOther : PitchTypeBase() {
+object CToAny : PitchTypeBase() {
 
     override val markovChain: MarkovChain
 
