@@ -53,10 +53,8 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             piano.apply {
                 setOnLoadCompleteListener {
                     this@PitchFragment.viewModel.setCanStart(true)
-                    isTouchable = true
                 }
                 setOnPlayListener(this@PitchFragment)
-                isTouchable = false
             }
         }
         return binding.root

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.go.piano_pitch.R
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_piano.view.*
 
 class PianoFragment : Fragment() {
 
@@ -20,6 +21,9 @@ class PianoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_piano, container, false)
+        return inflater.inflate(R.layout.fragment_piano, container, false).apply {
+            // TODO: pianoPlayer, pianoView の関係を直す
+            piano.setOnLoadCompleteListener {}
+        }
     }
 }

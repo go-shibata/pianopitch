@@ -45,7 +45,7 @@ class PianoView(
 
     private var onPlayListener: OnPlayListener? = null
 
-    var isTouchable = true
+    private var isTouchable = false
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
@@ -158,7 +158,10 @@ class PianoView(
     }
 
     fun setOnLoadCompleteListener(onLoadComplete: () -> Unit) {
-        pianoPlayer = PianoPlayer(context, onLoadComplete)
+        pianoPlayer = PianoPlayer(context) {
+            isTouchable = true
+            onLoadComplete.invoke()
+        }
     }
 
     fun setOnPlayListener(listener: OnPlayListener) {
