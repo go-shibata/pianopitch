@@ -76,7 +76,7 @@
             android:enabled="@{!viewModel.isStarted() || viewModel.resultIsCorrect != null}"
             android:onClick="@{() -> fragment.onClickButton()}"
             android:padding="@dimen/margin_small"
-            android:text="@{viewModel.isStarted().equals(false) ? @string/pitch_btn_start_text : viewModel.isFinish() ? @string/pitch_btn_finish_text : @string/pitch_btn_restart_text}"
+            android:text="@{viewModel.isStarted() != true ? @string/pitch_btn_start_text : viewModel.isFinish() ? @string/pitch_btn_finish_text : @string/pitch_btn_restart_text}"
             android:textColor="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/piano"
             app:layout_constraintEnd_toEndOf="parent"
