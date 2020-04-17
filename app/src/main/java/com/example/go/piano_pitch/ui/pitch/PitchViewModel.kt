@@ -64,7 +64,7 @@ class PitchViewModel @Inject constructor(
         val isCorrect = playedNotes.zip(questionNotes)
             .all { pair ->
                 pair.first.zip(pair.second)
-                    .all { p -> p.first == p.second }
+                    .all { p -> p.first.note % 12 == p.second.note % 12 }
             }
         _resultIsCorrect.postValue(isCorrect)
         results.add(
