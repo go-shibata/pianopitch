@@ -49,6 +49,7 @@ class PitchViewModel @Inject constructor(
         bufferPlayedNotes.add(data)
         if (bufferPlayedNotes.size == pitchType.numberOfComponent) {
             val list = bufferPlayedNotes.toList()
+                .sortedBy { it.note }
             playedNotes.add(list)
             _playedNote.postValue(list)
             bufferPlayedNotes.clear()
@@ -88,6 +89,9 @@ class PitchViewModel @Inject constructor(
         _isStarted.postValue(true)
         _resultIsCorrect.postValue(null)
         val question = pitchType.sample()
-        _question.postValue(question.map { it.map { note -> Note.fromIndex(note) } })
+        _question.postValue(question.map {
+            it.map { note -> Note.fromIndex(note) }
+                .sortedBy { note -> note.note }
+        })
     }
 }
