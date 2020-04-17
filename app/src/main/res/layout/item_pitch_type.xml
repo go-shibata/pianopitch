@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="pitchType"
+            type="com.example.go.piano_pitch.logic.PitchType" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_primary_background"
+        android:padding="@dimen/margin_mid">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/item_pitch_type_icon_size"
+            android:layout_height="@dimen/item_pitch_type_icon_size"
+            android:src="@drawable/ic_correct"
+            app:layout_constraintBottom_toTopOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{pitchType.title}"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/item_pitch_type_title_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -15,15 +15,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.menu.MenuFragment">
 
-        <Button
-            android:id="@+id/btn_pitch"
-            android:layout_width="wrap_content"
+        <com.airbnb.epoxy.EpoxyRecyclerView
+            android:id="@+id/list_pitch_type"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/button_primary_background"
-            android:onClick="@{() -> fragment.onClickPitchButton()}"
-            android:padding="@dimen/margin_small"
-            android:text="@string/menu_btn_pitch_text"
-            android:textColor="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@id/btn_piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +38,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_pitch" />
+            app:layout_constraintTop_toBottomOf="@id/list_pitch_type" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

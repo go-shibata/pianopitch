@@ -10,8 +10,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.databinding.FragmentMenuBinding
 import com.example.go.piano_pitch.logic.PitchType
 import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
-class MenuFragment : Fragment() {
+class MenuFragment : Fragment(), MenuEpoxyController.OnClickPitchTypeListener {
+
+    @Inject
+    lateinit var epoxyController: MenuEpoxyController
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -24,20 +28,23 @@ class MenuFragment : Fragment() {
     ): View? {
         val binding = FragmentMenuBinding.inflate(inflater, container, false).apply {
             fragment = this@MenuFragment
+            listPitchType.apply {
+                setController(epoxyController)
+            }.requestModelBuild()
         }
         return binding.root
-    }
-
-    @ExperimentalStdlibApi
-    fun onClickPitchButton() {
-        findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToPitchFragment(PitchType.C_TO_OTHER)
-        )
     }
 
     fun onClickPianoButton() {
         findNavController().navigate(
             MenuFragmentDirections.actionMenuFragmentToPianoFragment()
+        )
+    }
+
+    @ExperimentalStdlibApi
+    override fun onClick(pitchType: PitchType) {
+        findNavController().navigate(
+            MenuFragmentDirections.actionMenuFragmentToPitchFragment(pitchType)
         )
     }
 }

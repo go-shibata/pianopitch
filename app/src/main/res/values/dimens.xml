@@ -5,6 +5,9 @@
 
     <dimen name="btn_corner_radius">4dp</dimen>
 
+    <dimen name="item_pitch_type_icon_size">@dimen/pitch_icon_size</dimen>
+    <dimen name="item_pitch_type_title_text_size">20sp</dimen>
+
     <dimen name="pitch_notes_size">52dp</dimen>
     <dimen name="pitch_notes_text_size">36sp</dimen>
     <dimen name="pitch_notes_lists_margin">16dp</dimen>
