@@ -11,10 +11,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PitchResultViewModel @Inject constructor(
-    application: Application
+    application: Application,
+    onLoadComplete: () -> Unit
 ) : AndroidViewModel(application) {
 
-    private val pianoPlayer = PianoPlayer(application)
+    private val pianoPlayer = PianoPlayer(application) { onLoadComplete.invoke() }
 
     fun play(result: Result) {
         CoroutineScope(Dispatchers.Default).launch {

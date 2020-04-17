@@ -12,9 +12,15 @@ class PitchResultEpoxyController @Inject constructor(
 ) : EpoxyController() {
 
     private var data: List<Result> = emptyList()
+    private var canPlay: Boolean = false
 
     fun setData(data: List<Result>) {
         this.data = data
+        requestModelBuild()
+    }
+
+    fun setCanPlay(canPlay: Boolean) {
+        this.canPlay = canPlay
         requestModelBuild()
     }
 
@@ -25,6 +31,7 @@ class PitchResultEpoxyController @Inject constructor(
                 questionNumber(index + 1)
                 res(it)
                 listener(onClickPlayButtonListener)
+                canPlay(canPlay)
 
                 onBind { _, view, _ ->
                     val root = view.dataBinding.root

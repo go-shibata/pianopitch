@@ -22,9 +22,14 @@ class PitchResultFragment : Fragment(), PitchResultEpoxyController.OnClickPlayBu
     @Inject
     lateinit var epoxyController: PitchResultEpoxyController
 
+    val onLoadComplete = {
+        epoxyController.setCanPlay(true)
+    }
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+        viewModel // to init
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

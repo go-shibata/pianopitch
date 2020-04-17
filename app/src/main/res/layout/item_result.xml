@@ -16,6 +16,10 @@
         <variable
             name="listener"
             type="com.example.go.piano_pitch.ui.pitch.PitchResultEpoxyController.OnClickPlayButtonListener" />
+
+        <variable
+            name="canPlay"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +77,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_mid"
             android:background="@drawable/button_primary_background"
+            android:enabled="@{canPlay}"
             android:onClick="@{() -> listener.onClickPlayButton(res)}"
             android:padding="@dimen/margin_small"
             android:text="@string/item_result_button_text"
