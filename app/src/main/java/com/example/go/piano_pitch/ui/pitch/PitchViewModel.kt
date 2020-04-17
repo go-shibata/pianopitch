@@ -15,17 +15,21 @@ class PitchViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     @ExperimentalStdlibApi
-    private lateinit var pitchType: PitchType
+    lateinit var pitchType: PitchType
 
     val results = arrayListOf<Result>()
 
     private val _questionCount = MutableLiveData(0)
     val questionCount: LiveData<Int> = _questionCount
 
+    private val bufferPlayedNotes = arrayListOf<Note>()
     private val playedNotes = arrayListOf<List<Note>>()
 
-    private val _playedNote = MutableLiveData<Note>()
-    val playedNote: LiveData<Note> = _playedNote
+    private val _bufferPlayedNote = MutableLiveData<Note>()
+    val bufferPlayedNote: LiveData<Note> = _bufferPlayedNote
+
+    private val _playedNote = MutableLiveData<List<Note>>()
+    val playedNote: LiveData<List<Note>> = _playedNote
 
     private val _question = MutableLiveData<List<List<Note>>>()
     val question: LiveData<List<List<Note>>> = _question
@@ -40,17 +44,19 @@ class PitchViewModel @Inject constructor(
     val isFinish: LiveData<Boolean> = _isFinish
 
     @ExperimentalStdlibApi
-    fun setPitchType(pitchType: PitchType) {
-        this.pitchType = pitchType
-    }
-
     fun setPlayedNote(note: Int) {
         if (isStarted.value != true || resultIsCorrect.value != null) return
 
         val data = Note(note)
-        _playedNote.postValue(data)
+        _bufferPlayedNote.postValue(data)
 
-        playedNotes.add(listOf(data))
+        bufferPlayedNotes.add(data)
+        if (bufferPlayedNotes.size == pitchType.numberOfComponent) {
+            val list = bufferPlayedNotes.toList()
+            playedNotes.add(list)
+            _playedNote.postValue(list)
+            bufferPlayedNotes.clear()
+        }
         if (playedNotes.size == question.value?.size) {
             checkAnswer()
         }

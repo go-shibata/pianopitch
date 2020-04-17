@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -39,7 +40,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         super.onCreate(savedInstanceState)
         checkNotNull(arguments).let {
             val pitchType = PitchFragmentArgs.fromBundle(it).pitchType
-            viewModel.setPitchType(pitchType)
+            viewModel.pitchType = pitchType
         }
     }
 
@@ -56,12 +57,21 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         return binding.root
     }
 
+    @ExperimentalStdlibApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.playedNote.observe(viewLifecycleOwner, Observer {
+        viewModel.bufferPlayedNote.observe(viewLifecycleOwner, Observer {
             val textView = NoteTextView(requireContext(), it.name)
             binding.aNotes.addView(textView)
+        })
+        viewModel.playedNote.observe(viewLifecycleOwner, Observer {
+            val listView = NotesListView(requireContext(), it)
+            val numberOfComponent = viewModel.pitchType.numberOfComponent
+            binding.aNotes.apply {
+                removeViews(size - numberOfComponent, numberOfComponent)
+                addView(listView)
+            }
         })
         viewModel.question.observe(viewLifecycleOwner, Observer {
             it.forEach { list ->
@@ -80,6 +90,7 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
         })
     }
 
+    @ExperimentalStdlibApi
     override fun onPlay(note: Int) {
         viewModel.setPlayedNote(note)
     }
