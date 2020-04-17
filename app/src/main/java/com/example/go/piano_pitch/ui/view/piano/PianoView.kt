@@ -45,6 +45,8 @@ class PianoView(
 
     private var onPlayListener: OnPlayListener? = null
 
+    var isTouchable = true
+
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
 
@@ -92,6 +94,8 @@ class PianoView(
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (!isTouchable) return false
+
         checkNotNull(event)
         val action = event.actionMasked
         val isDown = action in listOf(
