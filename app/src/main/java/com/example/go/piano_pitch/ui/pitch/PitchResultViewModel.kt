@@ -26,4 +26,9 @@ class PitchResultViewModel @Inject constructor(
             }
         }
     }
+
+    override fun onCleared() {
+        pianoPlayer.onDestroy()
+        super.onCleared()
+    }
 }
