@@ -1,7 +1,6 @@
 package com.example.go.piano_pitch.ui.view.note
 
 import android.content.Context
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.go.piano_pitch.R
@@ -9,15 +8,10 @@ import kotlinx.android.synthetic.main.text_note.view.*
 
 class NoteTextView(
     context: Context,
-    attrs: AttributeSet?,
     text: String
-) : FrameLayout(context, attrs) {
+) : FrameLayout(context) {
 
-    constructor(context: Context) : this(context, null, "")
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, "")
-
-    constructor(context: Context, text: String) : this(context, null, text)
+    constructor(context: Context) : this(context, "")
 
     init {
         val inflater = LayoutInflater.from(context)
