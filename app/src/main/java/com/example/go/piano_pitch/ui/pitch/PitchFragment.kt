@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.databinding.FragmentPitchBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
 import com.example.go.piano_pitch.ui.view.note.NoteTextView
+import com.example.go.piano_pitch.ui.view.note.NotesListView
 import com.example.go.piano_pitch.ui.view.piano.PianoView
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.CoroutineScope
@@ -63,15 +64,17 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             binding.aNotes.addView(textView)
         })
         viewModel.question.observe(viewLifecycleOwner, Observer {
-            it.forEach { note ->
-                val textView = NoteTextView(requireContext(), note.name)
-                binding.qNotes.addView(textView)
+            it.forEach { list ->
+                val listView = NotesListView(requireContext(), list)
+                binding.qNotes.addView(listView)
             }
 
             CoroutineScope(Dispatchers.Default).launch {
-                it.forEach { note ->
-                    delay(1000)
-                    binding.piano.play(note.note)
+                it.forEach { list ->
+                    list.forEach { note ->
+                        delay(1000)
+                        binding.piano.play(note.note)
+                    }
                 }
             }
         })

@@ -22,13 +22,13 @@ class PitchViewModel @Inject constructor(
     private val _questionCount = MutableLiveData(0)
     val questionCount: LiveData<Int> = _questionCount
 
-    private val playedNotes = arrayListOf<Note>()
+    private val playedNotes = arrayListOf<List<Note>>()
 
     private val _playedNote = MutableLiveData<Note>()
     val playedNote: LiveData<Note> = _playedNote
 
-    private val _question = MutableLiveData<List<Note>>()
-    val question: LiveData<List<Note>> = _question
+    private val _question = MutableLiveData<List<List<Note>>>()
+    val question: LiveData<List<List<Note>>> = _question
 
     private val _isStarted = MutableLiveData<Boolean>()
     val isStarted: LiveData<Boolean> = _isStarted
@@ -50,7 +50,7 @@ class PitchViewModel @Inject constructor(
         val data = Note(note)
         _playedNote.postValue(data)
 
-        playedNotes.add(data)
+        playedNotes.add(listOf(data))
         if (playedNotes.size == question.value?.size) {
             checkAnswer()
         }
@@ -59,7 +59,10 @@ class PitchViewModel @Inject constructor(
     private fun checkAnswer() {
         val questionNotes = checkNotNull(question.value)
         val isCorrect = playedNotes.zip(questionNotes)
-            .all { pair -> pair.first == pair.second }
+            .all { pair ->
+                pair.first.zip(pair.second)
+                    .all { p -> p.first == p.second }
+            }
         _resultIsCorrect.postValue(isCorrect)
         results.add(
             Result(
@@ -83,6 +86,6 @@ class PitchViewModel @Inject constructor(
         _isStarted.postValue(true)
         _resultIsCorrect.postValue(null)
         val question = pitchType.sample()
-        _question.postValue(question.map { Note.fromIndex(it) })
+        _question.postValue(question.map { it.map { note -> Note.fromIndex(note) } })
     }
 }

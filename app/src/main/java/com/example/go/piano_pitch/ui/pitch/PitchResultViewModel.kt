@@ -18,9 +18,11 @@ class PitchResultViewModel @Inject constructor(
 
     fun play(result: Result) {
         CoroutineScope(Dispatchers.Default).launch {
-            result.questionNotes.forEach {
-                delay(1000)
-                pianoPlayer.play(it.note)
+            result.questionNotes.forEach { list ->
+                list.forEach {
+                    delay(1000)
+                    pianoPlayer.play(it.note)
+                }
             }
         }
     }

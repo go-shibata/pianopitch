@@ -19,5 +19,5 @@ enum class PitchType(
     FIVE(Five::class, "五音"),
     ;
 
-    fun sample(): List<Int> = (className.objectInstance as PitchTypeBase).sample()
+    fun sample(): List<List<Int>> = (className.objectInstance as PitchTypeBase).sample()
 }

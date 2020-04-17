@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Result(
     val id: Long,
     val isCorrect: Boolean,
-    val playedNotes: List<Note>,
-    val questionNotes: List<Note>
+    val playedNotes: List<List<Note>>,
+    val questionNotes: List<List<Note>>
 ) : Parcelable

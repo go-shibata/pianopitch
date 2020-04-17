@@ -23,5 +23,5 @@ object FiveWhite : PitchTypeBase() {
         markovChain = MarkovChain(InitializeProbability(init), TransitionProbability(trans))
     }
 
-    override fun sample(): List<Int> = markovChain.sample(5)
+    override fun sample(): List<List<Int>> = markovChain.sample(5).asNoteList()
 }
