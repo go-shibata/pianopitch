@@ -2,11 +2,14 @@
 <resources>
     <dimen name="margin_small">12dp</dimen>
     <dimen name="margin_mid">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
 
     <dimen name="btn_corner_radius">4dp</dimen>
 
+    <dimen name="menu_button_text_size">20sp</dimen>
+
     <dimen name="item_pitch_type_icon_size">@dimen/pitch_icon_size</dimen>
-    <dimen name="item_pitch_type_title_text_size">20sp</dimen>
+    <dimen name="item_pitch_type_title_text_size">@dimen/menu_button_text_size</dimen>
 
     <dimen name="pitch_notes_size">52dp</dimen>
     <dimen name="pitch_notes_text_size">36sp</dimen>

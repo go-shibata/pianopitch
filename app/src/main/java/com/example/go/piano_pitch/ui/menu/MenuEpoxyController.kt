@@ -3,6 +3,7 @@ package com.example.go.piano_pitch.ui.menu
 import com.airbnb.epoxy.EpoxyController
 import com.airbnb.epoxy.carousel
 import com.example.go.piano_pitch.ItemPitchTypeBindingModel_
+import com.example.go.piano_pitch.R
 import com.example.go.piano_pitch.logic.PitchType
 import javax.inject.Inject
 
@@ -17,7 +18,8 @@ class MenuEpoxyController @Inject constructor(
     override fun buildModels() {
         carousel {
             id("pitchTypes")
-            numViewsToShowOnScreen(3f)
+            numViewsToShowOnScreen(4f)
+            paddingRes(R.dimen.margin_mid)
             hasFixedSize(true)
 
             models(

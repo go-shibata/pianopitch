@@ -30,7 +30,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_mid"
             android:text="@{pitchType.title}"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/item_pitch_type_title_text_size"
