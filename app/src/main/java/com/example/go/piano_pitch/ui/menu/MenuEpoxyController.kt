@@ -18,7 +18,7 @@ class MenuEpoxyController @Inject constructor(
     override fun buildModels() {
         carousel {
             id("pitchTypes")
-            numViewsToShowOnScreen(4f)
+            numViewsToShowOnScreen(3.1f)
             paddingRes(R.dimen.margin_mid)
             hasFixedSize(true)
 
