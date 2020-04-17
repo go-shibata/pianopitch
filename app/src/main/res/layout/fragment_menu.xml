@@ -19,6 +19,8 @@
             android:id="@+id/list_pitch_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/btn_piano"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
