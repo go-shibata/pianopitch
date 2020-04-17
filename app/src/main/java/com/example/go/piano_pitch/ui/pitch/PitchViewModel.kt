@@ -31,6 +31,9 @@ class PitchViewModel @Inject constructor(
     private val _question = MutableLiveData<List<List<Note>>>()
     val question: LiveData<List<List<Note>>> = _question
 
+    private val _canStart = MutableLiveData<Boolean>()
+    val canStart: LiveData<Boolean> = _canStart
+
     private val _isStarted = MutableLiveData<Boolean>()
     val isStarted: LiveData<Boolean> = _isStarted
 
@@ -93,5 +96,9 @@ class PitchViewModel @Inject constructor(
             it.map { note -> Note.fromIndex(note) }
                 .sortedBy { note -> note.note }
         })
+    }
+
+    fun setCanStart(boolean: Boolean) {
+        _canStart.postValue(boolean)
     }
 }

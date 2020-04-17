@@ -41,7 +41,7 @@ class PianoView(
     private val whiteKeys: ArrayList<Key> = arrayListOf()
     private val blackKeys: ArrayList<Key> = arrayListOf()
 
-    private val pianoPlayer = PianoPlayer(context)
+    private lateinit var pianoPlayer: PianoPlayer
 
     private var onPlayListener: OnPlayListener? = null
 
@@ -151,6 +151,10 @@ class PianoView(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         pianoPlayer.onDestroy()
+    }
+
+    fun setOnLoadCompleteListener(onLoadComplete: () -> Unit) {
+        pianoPlayer = PianoPlayer(context, onLoadComplete)
     }
 
     fun setOnPlayListener(listener: OnPlayListener) {

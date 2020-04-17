@@ -7,7 +7,8 @@ import androidx.core.content.res.getResourceIdOrThrow
 import com.example.go.piano_pitch.R
 
 class PianoPlayer(
-    context: Context
+    context: Context,
+    onLoadComplete: () -> Unit
 ) {
 
     companion object {
@@ -16,6 +17,7 @@ class PianoPlayer(
 
     private val pool: SoundPool
     private val noteToSound: Map<Int, Int>
+    private val isLoaded: MutableMap<Int, Boolean>
 
     init {
         val attr = AudioAttributes.Builder()
@@ -31,7 +33,20 @@ class PianoPlayer(
         noteToSound = (0 until notesArray.length()).associate {
             START_NOTE_NUMBER + it to pool.load(context, notesArray.getResourceIdOrThrow(it), 1)
         }
+        isLoaded = (0 until notesArray.length()).associate {
+            checkNotNull(noteToSound[START_NOTE_NUMBER + it]) to false
+        }.toMutableMap()
         notesArray.recycle()
+
+        pool.setOnLoadCompleteListener { _, sampleId, status ->
+            // if success
+            if (status == 0) {
+                isLoaded[sampleId] = true
+            }
+            if (isLoaded.all { it.value }) {
+                onLoadComplete.invoke()
+            }
+        }
     }
 
     fun play(note: Int) {

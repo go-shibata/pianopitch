@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_mid"
             android:background="@drawable/button_primary_background"
-            android:enabled="@{!viewModel.isStarted() || viewModel.resultIsCorrect != null}"
+            android:enabled="@{viewModel.canStart &amp;&amp; (!viewModel.isStarted() || viewModel.resultIsCorrect != null)}"
             android:onClick="@{() -> fragment.onClickButton()}"
             android:padding="@dimen/margin_small"
             android:text="@{viewModel.isStarted() != true ? @string/pitch_btn_start_text : viewModel.isFinish() ? @string/pitch_btn_finish_text : @string/pitch_btn_restart_text}"

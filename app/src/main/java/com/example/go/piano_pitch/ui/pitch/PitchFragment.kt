@@ -50,7 +50,10 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             fragment = this@PitchFragment
             viewModel = this@PitchFragment.viewModel
             lifecycleOwner = viewLifecycleOwner
-            piano.setOnPlayListener(this@PitchFragment)
+            piano.apply {
+                setOnLoadCompleteListener { this@PitchFragment.viewModel.setCanStart(true) }
+                setOnPlayListener(this@PitchFragment)
+            }
         }
         return binding.root
     }
