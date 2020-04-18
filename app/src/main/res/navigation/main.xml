@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/pitchFragment"
         android:name="com.example.go.piano_pitch.ui.pitch.PitchFragment"
-        android:label="@string/pitch_title"
+        android:label="{title}"
         tools:layout="@layout/fragment_pitch">
         <action
             android:id="@+id/action_pitchFragment_to_pitchResultFragment"
@@ -34,6 +34,9 @@
         <argument
             android:name="pitchType"
             app:argType="com.example.go.piano_pitch.logic.PitchType" />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/pitchResultFragment"

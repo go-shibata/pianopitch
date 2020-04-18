@@ -44,7 +44,7 @@ class MenuFragment : Fragment(), MenuEpoxyController.OnClickPitchTypeListener {
     @ExperimentalStdlibApi
     override fun onClick(pitchType: PitchType) {
         findNavController().navigate(
-            MenuFragmentDirections.actionMenuFragmentToPitchFragment(pitchType)
+            MenuFragmentDirections.actionMenuFragmentToPitchFragment(pitchType, pitchType.title)
         )
     }
 }
