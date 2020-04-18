@@ -21,6 +21,9 @@ enum class PitchType(
     ONE_DYAD_MAJOR_MINOR(OneDyadMajorMinor::class, "二和音（長・短）", 2),
     ONE_DYAD(OneDyad::class, "二和音", 2),
     TWO_DYAD(TwoDyad::class, "二つの二和音", 2),
+    ONE_TRIAD_MAJOR(OneTriadMajor::class, "三和音（長）", 3),
+    ONE_TRIAD(OneTriad::class, "三和音", 3),
+    TWO_TRIAD(TwoTriad::class, "二つの三和音", 3),
     ;
 
     fun sample(): List<List<Int>> = (className.objectInstance as PitchTypeBase).sample()
