@@ -18,6 +18,8 @@ enum class PitchType(
     THREE(Three::class, "三音", 1),
     FIVE_WHITE(FiveWhite::class, "五音（白鍵）", 1),
     FIVE(Five::class, "五音", 1),
+    ONE_DYAD_MAJOR_MINOR(OneDyadMajorMinor::class, "二和音（長・短）", 2),
+    ONE_DYAD(OneDyad::class, "二和音", 2),
     ;
 
     fun sample(): List<List<Int>> = (className.objectInstance as PitchTypeBase).sample()
