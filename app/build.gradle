@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'deploygate'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
