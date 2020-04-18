@@ -5,7 +5,7 @@ import com.example.go.piano_pitch.logic.MarkovChain
 abstract class PitchTypeBase {
 
     companion object {
-        fun List<Int>.asNoteList(vararg size: Int = IntArray(1) { 1 }): List<List<Int>> = this.map {
+        fun List<Int>.asIndexList(vararg size: Int = IntArray(1) { 1 }): List<List<Int>> = this.map {
             var index = it
             size.reversed().map { s ->
                 val value = index % s

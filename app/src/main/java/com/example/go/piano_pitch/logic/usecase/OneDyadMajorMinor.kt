@@ -29,7 +29,7 @@ object OneDyadMajorMinor : PitchTypeBase() {
         markovChain = MarkovChain(InitializeProbability(init), TransitionProbability(trans))
     }
 
-    override fun sample(): List<List<Int>> = markovChain.sample(1).asNoteList(12, all.size).map {
+    override fun sample(): List<List<Int>> = markovChain.sample(1).asIndexList(12, all.size).map {
         Dyad(it[0], all[it[1]]).getNotes()
     }
 }

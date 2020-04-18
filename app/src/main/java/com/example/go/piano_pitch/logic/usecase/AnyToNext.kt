@@ -22,5 +22,5 @@ object AnyToNext : PitchTypeBase() {
         markovChain = MarkovChain(InitializeProbability(init), TransitionProbability(trans))
     }
 
-    override fun sample(): List<List<Int>> = markovChain.sample(2).asNoteList()
+    override fun sample(): List<List<Int>> = markovChain.sample(2).asIndexList()
 }

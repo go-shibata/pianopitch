@@ -23,5 +23,5 @@ object ThreeWhite : PitchTypeBase() {
         markovChain = MarkovChain(InitializeProbability(init), TransitionProbability(trans))
     }
 
-    override fun sample(): List<List<Int>> = markovChain.sample(3).asNoteList()
+    override fun sample(): List<List<Int>> = markovChain.sample(3).asIndexList()
 }
