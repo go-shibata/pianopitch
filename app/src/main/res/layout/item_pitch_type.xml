@@ -23,7 +23,7 @@
             android:id="@+id/icon"
             android:layout_width="@dimen/item_pitch_type_icon_size"
             android:layout_height="@dimen/item_pitch_type_icon_size"
-            android:src="@{clearedTimes > 0 ? @drawable/ic_correct : @drawable/ic_question}"
+            android:src="@{clearedTimes > 0 ? @drawable/ic_correct : @drawable/ic_pitch_type}"
             app:layout_constraintBottom_toTopOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
