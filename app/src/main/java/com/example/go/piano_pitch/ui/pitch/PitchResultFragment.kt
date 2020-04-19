@@ -41,7 +41,9 @@ class PitchResultFragment : Fragment(), PitchResultEpoxyController.OnClickPlayBu
 
         checkNotNull(arguments).let {
             val results = PitchResultFragmentArgs.fromBundle(it).results
+            val pitchTypeId = PitchResultFragmentArgs.fromBundle(it).pitchTypeId
             epoxyController.setData(results.toList())
+            viewModel.saveResult(pitchTypeId, results.toList())
         }
     }
 

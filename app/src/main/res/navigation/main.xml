@@ -49,6 +49,9 @@
         <argument
             android:name="results"
             app:argType="com.example.go.piano_pitch.data.Result[]" />
+        <argument
+            android:name="pitchTypeId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

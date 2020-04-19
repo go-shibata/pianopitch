@@ -109,7 +109,8 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             viewModel.isFinish.value == true -> {
                 findNavController().navigate(
                     PitchFragmentDirections.actionPitchFragmentToPitchResultFragment(
-                        viewModel.results.toTypedArray()
+                        viewModel.results.toTypedArray(),
+                        viewModel.pitchType.id
                     )
                 )
             }
