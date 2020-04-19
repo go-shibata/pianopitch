@@ -40,6 +40,7 @@ android {
 dependencies {
     def coroutinesVersion = '1.3.4'
     def navigationVersion = '2.2.1'
+    def roomVersion = '1.1.1'
     def daggerVersion = '2.27'
     def epoxyVersion = '3.9.0'
 
@@ -63,6 +64,11 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$navigationVersion"
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+
+    // room
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
+    androidTestImplementation "android.arch.persistence.room:testing:$roomVersion"
 
     // dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
