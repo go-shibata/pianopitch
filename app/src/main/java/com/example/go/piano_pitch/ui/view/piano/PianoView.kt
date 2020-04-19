@@ -41,10 +41,8 @@ class PianoView(
     private val whiteKeys: ArrayList<Key> = arrayListOf()
     private val blackKeys: ArrayList<Key> = arrayListOf()
 
-    private lateinit var pianoPlayer: PianoPlayer
-
+    private var pianoPlayer: PianoPlayer? = null
     private var onPlayListener: OnPlayListener? = null
-
     private var isTouchable = false
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -132,7 +130,7 @@ class PianoView(
                 continue
             }
             if (!k.isSustain) {
-                pianoPlayer.play(k.note)
+                pianoPlayer?.play(k.note)
                 k.isSustain = true
                 onPlayListener?.onPlay(k.note)
             }
@@ -152,24 +150,16 @@ class PianoView(
         return null
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        pianoPlayer.onDestroy()
-    }
-
-    fun setOnLoadCompleteListener(onLoadComplete: () -> Unit) {
-        pianoPlayer = PianoPlayer(context) {
-            isTouchable = true
-            onLoadComplete.invoke()
-        }
+    fun setPianoPlayer(pianoPlayer: PianoPlayer) {
+        this.pianoPlayer = pianoPlayer
     }
 
     fun setOnPlayListener(listener: OnPlayListener) {
         onPlayListener = listener
     }
 
-    fun play(note: Int) {
-        pianoPlayer.play(note)
+    fun setTouchable(boolean: Boolean) {
+        isTouchable = boolean
     }
 
     interface OnPlayListener {

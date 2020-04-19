@@ -1,7 +1,6 @@
 package com.example.go.piano_pitch.ui.pitch
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import com.example.go.piano_pitch.data.Result
 import com.example.go.piano_pitch.ui.view.piano.PianoPlayer
 import kotlinx.coroutines.CoroutineScope
@@ -10,12 +9,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PitchResultViewModel @Inject constructor(
-    application: Application,
-    onLoadComplete: () -> Unit
-) : AndroidViewModel(application) {
-
-    private val pianoPlayer = PianoPlayer(application) { onLoadComplete.invoke() }
+class PitchResultViewModel @Inject constructor(private val pianoPlayer: PianoPlayer) : ViewModel() {
 
     fun play(result: Result) {
         CoroutineScope(Dispatchers.Default).launch {
@@ -26,10 +20,5 @@ class PitchResultViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    override fun onCleared() {
-        pianoPlayer.onDestroy()
-        super.onCleared()
     }
 }

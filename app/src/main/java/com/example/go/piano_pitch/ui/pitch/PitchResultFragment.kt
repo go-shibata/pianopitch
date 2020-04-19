@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.go.piano_pitch.data.Result
 import com.example.go.piano_pitch.databinding.FragmentPitchResultBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
+import com.example.go.piano_pitch.ui.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -20,11 +23,12 @@ class PitchResultFragment : Fragment(), PitchResultEpoxyController.OnClickPlayBu
     private val viewModel: PitchResultViewModel by viewModels { factory }
 
     @Inject
-    lateinit var epoxyController: PitchResultEpoxyController
+    lateinit var mainActivityFactory: ViewModelFactory<MainActivityViewModel>
+    private val mainActivityViewModel: MainActivityViewModel
+            by activityViewModels { mainActivityFactory }
 
-    val onLoadComplete = {
-        epoxyController.setCanPlay(true)
-    }
+    @Inject
+    lateinit var epoxyController: PitchResultEpoxyController
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -49,6 +53,13 @@ class PitchResultFragment : Fragment(), PitchResultEpoxyController.OnClickPlayBu
             results.setController(epoxyController)
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainActivityViewModel.onLoadComplete.observe(viewLifecycleOwner, Observer {
+            epoxyController.setCanPlay(true)
+        })
     }
 
     override fun onClickPlayButton(result: Result) {

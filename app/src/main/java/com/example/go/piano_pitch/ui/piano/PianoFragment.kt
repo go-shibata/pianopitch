@@ -6,11 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.go.piano_pitch.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import com.example.go.piano_pitch.databinding.FragmentPianoBinding
+import com.example.go.piano_pitch.di.ViewModelFactory
+import com.example.go.piano_pitch.ui.MainActivityViewModel
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_piano.view.*
+import javax.inject.Inject
 
 class PianoFragment : Fragment() {
+
+    @Inject
+    lateinit var mainActivityFactory: ViewModelFactory<MainActivityViewModel>
+    private val mainActivityViewModel: MainActivityViewModel
+            by activityViewModels { mainActivityFactory }
+
+    private lateinit var binding: FragmentPianoBinding
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -21,9 +32,17 @@ class PianoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_piano, container, false).apply {
-            // TODO: pianoPlayer, pianoView の関係を直す
-            piano.setOnLoadCompleteListener {}
+        binding = FragmentPianoBinding.inflate(inflater, container, false).apply {
+            piano.setPianoPlayer(mainActivityViewModel.pianoPlayer)
         }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mainActivityViewModel.onLoadComplete.observe(viewLifecycleOwner, Observer {
+            binding.piano.setTouchable(true)
+        })
     }
 }

@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.go.piano_pitch.databinding.FragmentPitchBinding
 import com.example.go.piano_pitch.di.ViewModelFactory
+import com.example.go.piano_pitch.ui.MainActivityViewModel
 import com.example.go.piano_pitch.ui.view.note.NotesListView
 import com.example.go.piano_pitch.ui.view.piano.PianoView
 import dagger.android.support.AndroidSupportInjection
@@ -25,6 +27,11 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
     @Inject
     lateinit var factory: ViewModelFactory<PitchViewModel>
     private val viewModel: PitchViewModel by viewModels { factory }
+
+    @Inject
+    lateinit var mainActivityFactory: ViewModelFactory<MainActivityViewModel>
+    private val mainActivityViewModel: MainActivityViewModel
+            by activityViewModels { mainActivityFactory }
 
     private lateinit var binding: FragmentPitchBinding
 
@@ -51,10 +58,8 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             viewModel = this@PitchFragment.viewModel
             lifecycleOwner = viewLifecycleOwner
             piano.apply {
-                setOnLoadCompleteListener {
-                    this@PitchFragment.viewModel.setCanStart(true)
-                }
                 setOnPlayListener(this@PitchFragment)
+                setPianoPlayer(mainActivityViewModel.pianoPlayer)
             }
         }
         return binding.root
@@ -79,10 +84,14 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
                 it.forEach { list ->
                     delay(1000)
                     list.forEach { note ->
-                        binding.piano.play(note.note)
+                        mainActivityViewModel.pianoPlayer.play(note.note)
                     }
                 }
             }
+        })
+        mainActivityViewModel.onLoadComplete.observe(viewLifecycleOwner, Observer {
+            viewModel.setCanStart(true)
+            binding.piano.setTouchable(true)
         })
     }
 
