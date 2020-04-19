@@ -35,6 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_mid"
+            android:gravity="center"
+            android:minLines="2"
             android:text="@{pitchType.title}"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/item_pitch_type_title_text_size"
