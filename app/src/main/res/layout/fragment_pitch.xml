@@ -82,6 +82,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/question_counter" />
 
+        <Button
+            android:id="@+id/button_listen_again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_mid"
+            android:background="@drawable/button_primary_background"
+            android:enabled="@{viewModel.isStarted()}"
+            android:onClick="@{() -> fragment.onClickListenAgain()}"
+            android:padding="@dimen/margin_small"
+            android:text="@string/pitch_btn_listen_again_text"
+            android:textColor="@color/colorSecondary"
+            android:visibility="@{viewModel.canListenAgain ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/piano"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question_counter" />
+
         <com.example.go.piano_pitch.ui.view.piano.PianoView
             android:id="@+id/piano"
             android:layout_width="0dp"

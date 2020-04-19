@@ -122,4 +122,16 @@ class PitchFragment : Fragment(), PianoView.OnPlayListener {
             }
         }
     }
+
+    fun onClickListenAgain() {
+        CoroutineScope(Dispatchers.Default).launch {
+            val question = viewModel.question.value ?: return@launch
+            question.forEach { list ->
+                delay(1000)
+                list.forEach { note ->
+                    mainActivityViewModel.pianoPlayer.play(note.note)
+                }
+            }
+        }
+    }
 }

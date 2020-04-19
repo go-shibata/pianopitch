@@ -6,13 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.go.piano_pitch.data.Note
 import com.example.go.piano_pitch.data.Result
+import com.example.go.piano_pitch.data.preference.MySharedPreferences
 import com.example.go.piano_pitch.logic.PitchType
 import javax.inject.Inject
 import kotlin.random.Random
 
 class PitchViewModel @Inject constructor(
-    application: Application
+    application: Application,
+    mySharedPreferences: MySharedPreferences
 ) : AndroidViewModel(application) {
+
+    val canListenAgain = mySharedPreferences.getCanListenAgain()
 
     @ExperimentalStdlibApi
     lateinit var pitchType: PitchType

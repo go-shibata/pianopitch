@@ -4,15 +4,21 @@
     <string name="menu_title">@string/app_name</string>
     <string name="menu_btn_pitch_text">問題に取り組む</string>
     <string name="menu_btn_piano_text">自由にピアノ</string>
+    <string name="menu_btn_setting_text">設定</string>
 
     <string name="pitch_question_counter_text">%d / 10</string>
     <string name="pitch_btn_start_text">開始</string>
     <string name="pitch_btn_restart_text">次の問題</string>
     <string name="pitch_btn_finish_text">結果確認</string>
+    <string name="pitch_btn_listen_again_text">聞き直す</string>
 
     <string name="pitch_result_title">結果</string>
 
     <string name="item_result_button_text">再生</string>
 
     <string name="piano_title">@string/app_name</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_difficulty_header">難易度</string>
+    <string name="settings_can_listen_again_text">聞き直しを可能にする</string>
 </resources>
