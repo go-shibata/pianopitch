@@ -19,7 +19,7 @@
             android:id="@+id/icon"
             android:layout_width="@dimen/item_pitch_type_icon_size"
             android:layout_height="@dimen/item_pitch_type_icon_size"
-            android:src="@drawable/ic_correct"
+            android:src="@drawable/ic_question"
             app:layout_constraintBottom_toTopOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
