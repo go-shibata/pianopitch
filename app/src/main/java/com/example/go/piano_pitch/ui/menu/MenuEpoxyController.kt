@@ -11,6 +11,9 @@ class MenuEpoxyController @Inject constructor(
     private val listener: OnClickPitchTypeListener
 ) : EpoxyController() {
 
+    private var pitchTypes: List<com.example.go.piano_pitch.data.database.entity.PitchType> =
+        emptyList()
+
     @ExperimentalStdlibApi
     private val data: Array<PitchType> = PitchType.values()
 
@@ -24,9 +27,12 @@ class MenuEpoxyController @Inject constructor(
 
             models(
                 data.mapIndexed { index, it ->
+                    val clearedTimes =
+                        pitchTypes.singleOrNull { v -> v.id == it.id }?.clearedTimes ?: 0
                     ItemPitchTypeBindingModel_()
                         .id(index)
                         .pitchType(it)
+                        .clearedTimes(clearedTimes)
                         .onBind { _, view, _ ->
                             view.dataBinding.root.setOnClickListener { _ ->
                                 listener.onClick(it)
@@ -35,6 +41,11 @@ class MenuEpoxyController @Inject constructor(
                 }
             )
         }
+    }
+
+    fun setPitchTypes(pitchTypes: List<com.example.go.piano_pitch.data.database.entity.PitchType>) {
+        this.pitchTypes = pitchTypes
+        requestModelBuild()
     }
 
     interface OnClickPitchTypeListener {

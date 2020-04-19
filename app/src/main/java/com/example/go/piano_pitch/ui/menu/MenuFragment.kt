@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.example.go.piano_pitch.data.database.MyDatabase
 import com.example.go.piano_pitch.databinding.FragmentMenuBinding
 import com.example.go.piano_pitch.logic.PitchType
 import dagger.android.support.AndroidSupportInjection
@@ -16,6 +18,9 @@ class MenuFragment : Fragment(), MenuEpoxyController.OnClickPitchTypeListener {
 
     @Inject
     lateinit var epoxyController: MenuEpoxyController
+
+    @Inject
+    lateinit var myDatabase: MyDatabase
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -33,6 +38,13 @@ class MenuFragment : Fragment(), MenuEpoxyController.OnClickPitchTypeListener {
             }.requestModelBuild()
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        myDatabase.pitchTypeDao().getAllPitchTypes().observe(viewLifecycleOwner, Observer {
+            epoxyController.setPitchTypes(it)
+        })
     }
 
     fun onClickPianoButton() {
