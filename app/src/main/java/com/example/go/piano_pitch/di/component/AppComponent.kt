@@ -13,6 +13,7 @@ import javax.inject.Singleton
     modules = [
         AndroidInjectionModule::class,
         SharedPreferencesModule::class,
+        MyDatabaseModule::class,
         MainActivityModule::class,
         MenuFragmentModule::class,
         PianoFragmentModule::class,
