@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_menuFragment_to_pitchFragment"
             app:destination="@id/pitchFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/pianoFragment"
@@ -47,4 +50,8 @@
             android:name="results"
             app:argType="com.example.go.piano_pitch.data.Result[]" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.go.piano_pitch.ui.setting.SettingsFragment"
+        android:label="@string/settings_title" />
 </navigation>

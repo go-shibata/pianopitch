@@ -39,8 +39,24 @@
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/menu_button_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_settings"
+            app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/list_pitch_type" />
+
+        <Button
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_primary_background"
+            android:onClick="@{() -> fragment.onClickSettingButton()}"
+            android:padding="@dimen/margin_small"
+            android:text="@string/menu_btn_setting_text"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/menu_button_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/btn_piano"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_piano"
+            app:layout_constraintTop_toTopOf="@id/btn_piano" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
