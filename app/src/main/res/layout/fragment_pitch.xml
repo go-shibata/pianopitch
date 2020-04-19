@@ -24,7 +24,7 @@
 
         <LinearLayout
             android:id="@+id/q_notes"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/pitch_notes_size"
             android:gravity="center"
             android:orientation="horizontal"
@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:id="@+id/a_notes"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/pitch_notes_size"
             android:layout_marginTop="@dimen/pitch_notes_lists_margin"
             android:gravity="center"
@@ -50,11 +50,11 @@
         <ImageView
             android:layout_width="@dimen/pitch_icon_size"
             android:layout_height="@dimen/pitch_icon_size"
+            android:layout_marginEnd="@dimen/margin_mid"
             android:src="@{viewModel.resultIsCorrect ? @drawable/ic_correct : @drawable/ic_incorrect}"
             android:visibility="@{viewModel.resultIsCorrect != null ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toTopOf="@id/piano"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/q_notes"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
